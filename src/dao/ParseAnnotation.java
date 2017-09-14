@@ -14,6 +14,9 @@ public class ParseAnnotation {
 		String sql = "";
 		TableName tableName = null;
 		boolean flg=false;
+		if(className.isEmpty()){
+			return true;
+		}
 		//实例化实体类
 		Class clazz = Class.forName(className);
 		//获取类层级注解
