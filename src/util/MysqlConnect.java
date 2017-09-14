@@ -3,18 +3,16 @@ package util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 public class MysqlConnect {
-	public static final String url = "jdbc:mysql://127.0.0.1/student";
-	public static final String name = "com.mysql.jdbc.Driver";
-	public static final String user = "root";
-	public static final String password = "1243";
-
 	public Connection conn = null;
 	public PreparedStatement pst = null;
 
-	public MysqlConnect(String sql) throws SQLException {  
+	public MysqlConnect(String sql) throws Exception {  
+		String url = GetProperties.getProperties("url");
+		String name = GetProperties.getProperties("driver");
+		String user = GetProperties.getProperties("musername");
+		String password = GetProperties.getProperties("mpassword");
         try {  
             Class.forName(name);//指定连接类型  
             conn = DriverManager.getConnection(url, user, password);//获取连接  

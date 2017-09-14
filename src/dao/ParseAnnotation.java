@@ -2,7 +2,6 @@ package dao;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.sql.SQLException;
 
 import annotation.Param;
 import annotation.TableName;
@@ -10,7 +9,7 @@ import util.MysqlConnect;
 import util.TypeMapping;
 
 public class ParseAnnotation {
-	public boolean createTable(String className) throws ClassNotFoundException, SQLException  {
+	public boolean createTable(String className) throws Exception  {
 		//Student student = new Student();
 		String sql = "";
 		TableName tableName = null;
@@ -20,8 +19,8 @@ public class ParseAnnotation {
 		//获取类层级注解
 		Annotation[] annotations = clazz.getAnnotations();
 		if(annotations.length<1){
-			System.err.println(annotations.length);
-			return false;
+			System.out.println("未发现注解，跳过。。。。。。。。");
+			return true;
 		}
 		tableName = (TableName)annotations[0];
 		
@@ -41,9 +40,18 @@ public class ParseAnnotation {
 		}
 		sql=sql.substring(0,sql.length()-1);
 		sql="create table"+" "+"`"+tableName.name()+"`"+"("+sql+")";
-		System.out.println(sql);
+		System.out.println("正在创建"+tableName.name()+"表。。。。。。。。");
+		
 		MysqlConnect mConnect = new MysqlConnect("");
-		mConnect.pst.executeUpdate(sql);
+		try {
+			System.out.println(sql);
+			mConnect.pst.executeUpdate(sql);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(tableName.name()+"已存在。。。。。。。。");
+			return true;
+		}
+		System.out.println(tableName.name()+"表创建成功！");
 		return true;
 	}
 }
