@@ -7,7 +7,8 @@ import util.GetClassName;
 import util.GetProperties;
 
 public class execute {
-	public static void main(String[] args) throws Exception {
+	//程序入口
+	public static void createTable() throws Exception {
 		String basePackage=GetProperties.getProperties("basepackage");
 		ParseAnnotation p = new ParseAnnotation();
 		List<String> result = GetClassName.getClassName(basePackage);

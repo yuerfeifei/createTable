@@ -13,10 +13,14 @@ public class GetProperties {
 		String path=System.getProperty("user.dir")+File.separator+"src"+File.separator+"setting.properties";
 		File file = new File(path);
 		FileReader fr = new FileReader(file);
+		@SuppressWarnings("resource")
 		BufferedReader fStream = new BufferedReader(fr);
 		String temp;
 		
 		while((temp= fStream.readLine())!=null){
+			if(temp.contains("#")) {
+				continue;
+			}
 			text = temp;
 			map.put(text.split("=")[0], text.split("=")[1]);
 		}
