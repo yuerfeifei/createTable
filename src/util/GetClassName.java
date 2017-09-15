@@ -14,9 +14,11 @@ public class GetClassName {
 			}
 			for (File fileName : fileArray) {
 				if(fileName.isDirectory()){
-					getClassName(dir+File.separator+fileName);
+					System.out.println(fileName.toString());
+					getClassName(dir+File.separator+fileName.getName());
+					continue;
 				}
-				System.out.println(dir+File.separator+fileName.getName());
+				System.err.println(dir+File.separator+fileName.getName());
 			}
 		}
 		
