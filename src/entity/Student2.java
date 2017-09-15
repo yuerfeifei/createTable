@@ -5,11 +5,11 @@ import annotation.TableName;
 
 @TableName(name="test")
 public class Student2 {
-	//@Param(name="testname",type="String")
+	@Param(name="testname",type="String")
 	private String name;
 	@Param(name="testage",type="Integer")
 	private String age;
-	//@Param(name="testcity",type="String")
+	@Param(name="testcity",type="String")
 	private String city;
 	public String getName() {
 		return name;

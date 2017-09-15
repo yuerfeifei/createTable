@@ -3,13 +3,13 @@ package entity.ee;
 import annotation.Param;
 import annotation.TableName;
 
-@TableName(name="test")
+@TableName(name="who")
 public class Student {
-	//@Param(name="testname",type="String")
+	@Param(name="testname",type="String")
 	private String name;
 	@Param(name="testage",type="Integer")
 	private String age;
-	//@Param(name="testcity",type="String")
+	@Param(name="testcity",type="String")
 	private String city;
 	public String getName() {
 		return name;

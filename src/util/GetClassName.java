@@ -1,9 +1,12 @@
 package util;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GetClassName {
-	public static String[] getClassName(String dir){
+	public static List<String> result = new ArrayList<>();
+	public static List<String> getClassName(String dir){
 		String basePath=System.getProperty("user.dir")+File.separator+"src";
 		String path = basePath+File.separator+dir+File.separator;
 		File file = new File(path);
@@ -14,14 +17,16 @@ public class GetClassName {
 			}
 			for (File fileName : fileArray) {
 				if(fileName.isDirectory()){
-					System.out.println(fileName.toString());
 					getClassName(dir+File.separator+fileName.getName());
 					continue;
 				}
-				System.err.println(dir+File.separator+fileName.getName());
+				String temp = dir+File.separator+fileName.getName();
+				String tempReplace = temp.replace("/", ".");
+				tempReplace = tempReplace.replace(".java","");
+				result.add(tempReplace);
+				
 			}
 		}
-		
-		return null;
+		return result;
 	}
 }

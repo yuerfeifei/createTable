@@ -1,5 +1,7 @@
 package exe;
 
+import java.util.List;
+
 import dao.ParseAnnotation;
 import util.GetClassName;
 import util.GetProperties;
@@ -8,7 +10,7 @@ public class execute {
 	public static void main(String[] args) throws Exception {
 		String basePackage=GetProperties.getProperties("basepackage");
 		ParseAnnotation p = new ParseAnnotation();
-		String[] result = GetClassName.getClassName();
+		List<String> result = GetClassName.getClassName(basePackage);
 		for (String className : result) {
 			System.out.println(className);
 			if(className==null){
